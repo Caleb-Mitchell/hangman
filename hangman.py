@@ -1,14 +1,8 @@
 """
 File: word_guess.py
 -------------------
-Fill in this comment.
+A simple hangman word guessing game.
 """
-
-# somehow destroy window on replay
-
-# on win, place him on ground
-# on loss, put huge X on the screen
-
 
 import random
 import tkinter
@@ -19,32 +13,27 @@ CANVAS_HEIGHT = 600  # Height of drawing canvas in pixels
 LEXICON_FILE = "Lexicon.txt"  # File to read word list from
 INITIAL_GUESSES = 8  # Initial number of guesses player starts with
 
-
 def main():
+    """
+    To play the game, we first draw the canvas, then select the secret word for
+    the player to guess and then play the game using that secret word.
+    """
+
     canvas = make_canvas(CANVAS_WIDTH, CANVAS_HEIGHT, 'Hangman')
     make_gallows(canvas)
-    # canvas.create_line(500, 100, 500, 500, fill="red")
-    # canvas.mainloop()
 
-    """
-    To play the game, we first select the secret word for the
-    player to guess and then play the game using that secret word.
-    """
     secret_word = get_word()
     play_game(canvas, secret_word)
 
-
 def get_word():
     """
-    This function returns a secret word that the player is trying
-    to guess in the game.  This function initially has a very small
-    list of words that it can select from to make it easier for you
-    to write and debug the main game playing program.  In Part II of
-    writing this program, you will re-implement this function to
-    select a word from a much larger list by reading a list of words
-    from the file specified by the constant LEXICON_FILE.
+    This function returns a secret word that the player is trying to guess in
+    the game.  This function initially has a very small list of words that it
+    can select from to make it easier for you to write and debug the main game
+    playing program.  In Part II of writing this program, you will re-implement
+    this function to select a word from a much larger list by reading a list of
+    words from the file specified by the constant LEXICON_FILE.
     """
-    # random.seed(1)
 
     word_list = []
     for line in open(LEXICON_FILE):
@@ -52,7 +41,6 @@ def get_word():
         word_list.append(line)
 
     random_word = random.choice(word_list)
-    # print(random_word)
     return random_word
 
 
@@ -61,21 +49,19 @@ def play_game(canvas, secret_word):
     Add your code (remember to delete the "pass" below)
     """
 
-    current_guesses = INITIAL_GUESSES  # needs to be set before game loop
+    current_guesses = INITIAL_GUESSES
     num_misses = 0
     game = True
 
-    unknown_word = hide_characters(secret_word)  # create hidden word changing letters to '-'
-    display_word = ''.join(unknown_word)  # create string to display from unknown word
+    unknown_word = hide_characters(secret_word)
+    display_word = ''.join(unknown_word)
 
     print("")
     while game:
         print("The word now looks like this: " + str(display_word))
 
-        # next display INITIAL_GUESSES
         print("You have " + str(current_guesses) + " guesses left.", "\n")
 
-        # ask for input from user as a guess
         letter_guess = input("Type a single letter here, then press enter: ")
         letter_guess = letter_guess.upper()
 
@@ -85,7 +71,6 @@ def play_game(canvas, secret_word):
             print("Guess should only be a single character.")
         elif (letter_guess in secret_word) and (letter_guess not in display_word):
             print("That guess is correct.")
-            # add correct guess to display_word while preserving dashes
             display_word = add_letters(secret_word, display_word, letter_guess)
             display_word = ''.join(display_word)
         elif (letter_guess in secret_word) and (letter_guess in display_word):
@@ -107,8 +92,8 @@ def play_game(canvas, secret_word):
                 num_misses = 0
                 game = True
                 secret_word = get_word()
-                unknown_word = hide_characters(secret_word)  # create hidden word changing letters to '-'
-                display_word = ''.join(unknown_word)  # create string to display from unknown word
+                unknown_word = hide_characters(secret_word)
+                display_word = ''.join(unknown_word)
                 print("")
             else:
                 break
@@ -125,12 +110,11 @@ def play_game(canvas, secret_word):
                 num_misses = 0
                 game = True
                 secret_word = get_word()
-                unknown_word = hide_characters(secret_word)  # create hidden word changing letters to '-'
-                display_word = ''.join(unknown_word)  # create string to display from unknown word
+                unknown_word = hide_characters(secret_word)
+                display_word = ''.join(unknown_word)
                 print("")
             else:
                 break
-
 
 def draw_body(canvas, num_misses):
     # create head
@@ -197,10 +181,8 @@ def hide_characters(secret_word):
 
 def make_canvas(width, height, title):
     """
-    DO NOT MODIFY
-    Creates and returns a drawing canvas
-    of the given int size with a blue border,
-    ready for drawing.
+    Creates and returns a drawing canvas of the given int size with a blue
+    border, ready for drawing.
     """
     top = tkinter.Tk()
     top.minsize(width=width, height=height)
@@ -209,8 +191,5 @@ def make_canvas(width, height, title):
     canvas.pack()
     return canvas
 
-
-# This provided line is required at the end of a Python file
-# to call the main() function.
 if __name__ == "__main__":
     main()
