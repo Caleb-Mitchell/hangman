@@ -64,25 +64,25 @@ def play_game(canvas, secret_word):
 
         print("You have " + str(current_guesses) + " guesses left.", "\n")
 
-        letter_guess = input("Type a single letter here, then press enter: ")
-        letter_guess = letter_guess.upper()
+        guess = input("Type a single letter here, then press enter: ")
+        guess = guess.upper()
 
-        if letter_guess == '':
+        if guess == '':
             print("Please guess a letter.")
-        elif len(letter_guess) > 1:
+        elif len(guess) > 1:
             print("Guess should only be a single character.")
-        elif (letter_guess in secret_word) and (letter_guess not in display_word):
+        elif (guess in secret_word) and (guess not in display_word):
             print("That guess is correct.")
-            display_word = add_letters(secret_word, display_word, letter_guess)
+            display_word = add_letters(secret_word, display_word, guess)
             display_word = ''.join(display_word)
-        elif (letter_guess in secret_word) and (letter_guess in display_word):
+        elif (guess in secret_word) and (guess in display_word):
             print("You have already guessed: " +
-                  str(letter_guess) + ", please guess a new letter.")
+                  str(guess) + ", please guess a new letter.")
         else:
             current_guesses -= 1
             num_misses += 1
             draw_body(canvas, num_misses)
-            print("There are no " + str(letter_guess) +
+            print("There are no " + str(guess) +
                   "'s in the word.", "\n")
 
         if current_guesses == 0:
@@ -165,10 +165,10 @@ def make_gallows(canvas):
                        text='H A N G M A N', fill="red")
 
 
-def add_letters(secret_word, display_word, letter_guess):
+def add_letters(secret_word, display_word, guess):
     new_string = []
     for letter in secret_word:
-        if letter_guess == letter:
+        if guess == letter:
             new_string.append(letter)
         elif letter in display_word:
             new_string.append(letter)
