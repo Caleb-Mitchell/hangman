@@ -82,7 +82,8 @@ def play_game(canvas, secret_word):
             current_guesses -= 1
             num_misses += 1
             draw_body(canvas, num_misses)
-            print("There are no " + str(letter_guess) + "'s in the word.", "\n")
+            print("There are no " + str(letter_guess) +
+                  "'s in the word.", "\n")
 
         if current_guesses == 0:
             print("Sorry, you lost. The secret word was: " +
