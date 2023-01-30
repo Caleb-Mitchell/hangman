@@ -117,33 +117,33 @@ def play_game(canvas, secret_word):
                 break
 
 def draw_body(canvas, num_misses):
-    # create head
-    if num_misses == 1:
-        canvas.create_oval(225, 150, 275, 200, outline="blue")
-    # create neck
-    if num_misses == 2:
-        canvas.create_line(250, 200, 250, 215, fill="blue")
-    # create body
-    if num_misses == 3:
-        canvas.create_rectangle(225, 215, 275, 350, outline="blue")
-    # create left arm
-    if num_misses == 4:
-        canvas.create_line(225, 225, 200, 210, fill="blue")
-    # create right arm
-    if num_misses == 5:
-        canvas.create_line(275, 225, 300, 210, fill="blue")
-    # create left leg
-    if num_misses == 6:
-        canvas.create_line(240, 350, 215, 375, fill="blue")
-    # create right leg
-    if num_misses == 7:
-        canvas.create_line(260, 350, 285, 375, fill="blue")
-    # create sad face
-    if num_misses == 8:
-        canvas.create_line(233, 165, 237, 165, fill="blue")
-        canvas.create_line(263, 165, 267, 165, fill="blue")
-        canvas.create_oval(245, 175, 255, 185, fill="blue")
-
+    match num_misses:
+        case 1:
+            # draw head
+            canvas.create_oval(225, 150, 275, 200, outline="blue")
+        case 2:
+            # draw neck
+            canvas.create_line(250, 200, 250, 215, fill="blue")
+        case 3:
+            # draw body
+            canvas.create_rectangle(225, 215, 275, 350, outline="blue")
+        case 4:
+            # draw left arm
+            canvas.create_line(225, 225, 200, 210, fill="blue")
+        case 5:
+            # draw right arm
+            canvas.create_line(275, 225, 300, 210, fill="blue")
+        case 6:
+            # draw left leg
+            canvas.create_line(240, 350, 215, 375, fill="blue")
+        case 7:
+            # draw right leg
+            canvas.create_line(260, 350, 285, 375, fill="blue")
+        case 8:
+            # draw sad face
+            canvas.create_line(233, 165, 237, 165, fill="blue")
+            canvas.create_line(263, 165, 267, 165, fill="blue")
+            canvas.create_oval(245, 175, 255, 185, fill="blue")
 
 def make_gallows(canvas):
     # gallows posts (right and bottom)
