@@ -13,6 +13,7 @@ CANVAS_HEIGHT = 600  # Height of drawing canvas in pixels
 LEXICON_FILE = "Lexicon.txt"  # File to read word list from
 INITIAL_GUESSES = 8  # Initial number of guesses player starts with
 
+
 def main():
     """
     To play the game, we first draw the canvas, then select the secret word for
@@ -24,6 +25,7 @@ def main():
 
     secret_word = get_word()
     play_game(canvas, secret_word)
+
 
 def get_word():
     """
@@ -74,7 +76,8 @@ def play_game(canvas, secret_word):
             display_word = add_letters(secret_word, display_word, letter_guess)
             display_word = ''.join(display_word)
         elif (letter_guess in secret_word) and (letter_guess in display_word):
-            print("You have already guessed: " + str(letter_guess) + ", please guess a new letter.")
+            print("You have already guessed: " +
+                  str(letter_guess) + ", please guess a new letter.")
         else:
             current_guesses -= 1
             num_misses += 1
@@ -82,7 +85,8 @@ def play_game(canvas, secret_word):
             print("There are no " + str(letter_guess) + "'s in the word.", "\n")
 
         if current_guesses == 0:
-            print("Sorry, you lost. The secret word was: " + str(secret_word), "\n")
+            print("Sorry, you lost. The secret word was: " +
+                  str(secret_word), "\n")
             game = False
             play_again = input("Press 'y' to play again, 'n' to quit.")
             if play_again == "y":
@@ -116,6 +120,7 @@ def play_game(canvas, secret_word):
             else:
                 break
 
+
 def draw_body(canvas, num_misses):
     match num_misses:
         case 1:
@@ -145,6 +150,7 @@ def draw_body(canvas, num_misses):
             canvas.create_line(263, 165, 267, 165, fill="blue")
             canvas.create_oval(245, 175, 255, 185, fill="blue")
 
+
 def make_gallows(canvas):
     # gallows posts (right and bottom)
     canvas.create_line(500, 100, 500, 500, fill="red")
@@ -154,7 +160,8 @@ def make_gallows(canvas):
     # gallows hanging post
     canvas.create_line(250, 100, 250, 150, fill="red")
 
-    canvas.create_text(25, 560, anchor='w', font='Courier 52', text='H A N G M A N', fill="red")
+    canvas.create_text(25, 560, anchor='w', font='Courier 52',
+                       text='H A N G M A N', fill="red")
 
 
 def add_letters(secret_word, display_word, letter_guess):
@@ -190,6 +197,7 @@ def make_canvas(width, height, title):
     canvas = tkinter.Canvas(top, width=width + 1, height=height + 1)
     canvas.pack()
     return canvas
+
 
 if __name__ == "__main__":
     main()
