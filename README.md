@@ -2,7 +2,7 @@
 
 A simple hangman word guessing game written in Python, with simple graphics implemented using tkinter.
 
-This was my final project for Code In Place, an excellent introduction to coding offered by Stanford University
+Made in 2020, this was my final project for Code In Place, an excellent introduction to coding offered by Stanford University
 at the start of the pandemic.
 
 Stanford CS106A was offered during the COVID-19 crisis. The course accepted 8,000 students out of 80,000 applicants, and its focus was on an introduction to Python.
