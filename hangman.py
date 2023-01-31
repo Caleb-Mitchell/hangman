@@ -15,11 +15,6 @@ INITIAL_GUESSES = 8  # Initial number of guesses player starts with
 
 
 def main():
-    """
-    To play the game, we first draw the canvas, then select the secret word for
-    the player to guess and then play the game using that secret word.
-    """
-
     canvas = make_canvas(CANVAS_WIDTH, CANVAS_HEIGHT, 'Hangman')
     make_gallows(canvas)
 
@@ -28,15 +23,6 @@ def main():
 
 
 def get_word():
-    """
-    This function returns a secret word that the player is trying to guess in
-    the game.  This function initially has a very small list of words that it
-    can select from to make it easier for you to write and debug the main game
-    playing program.  In Part II of writing this program, you will re-implement
-    this function to select a word from a much larger list by reading a list of
-    words from the file specified by the constant LEXICON_FILE.
-    """
-
     word_list = []
     for line in open(LEXICON_FILE):
         line = line.strip()
@@ -47,10 +33,6 @@ def get_word():
 
 
 def play_game(canvas, secret_word):
-    """
-    Add your code (remember to delete the "pass" below)
-    """
-
     current_guesses = INITIAL_GUESSES
     num_misses = 0
     game = True
@@ -188,10 +170,6 @@ def hide_characters(secret_word):
 
 
 def make_canvas(width, height, title):
-    """
-    Creates and returns a drawing canvas of the given int size with a blue
-    border, ready for drawing.
-    """
     top = tkinter.Tk()
     top.minsize(width=width, height=height)
     top.title(title)
